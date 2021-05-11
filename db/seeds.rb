@@ -1,7 +1,19 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require "csv"
+
+nasdaq = File.read(Rails.root.join("lib", "seeds", "nasdaq_screener.csv"))
+nasdaq_csv = CSV.parse(nasdaq, :headers => true)
+nasdaq_csv.each do |row|
+  x = Stock.new
+  x.symbol = row["Symbol"]
+  x.name = row["Name"]
+  x.last_sale = row["Last Sale"]
+  x.net_change = row["Net Change"]
+  x.percent_change = row["% Change"]
+  x.market_cap = row["Market Cap"]
+  x.country = row["Country"]
+  x.ipo_year = row["IPO Year"]
+  x.volume = row["Volume"]
+  x.sector = row["Sector"]
+  x.industry = row["Industry"]
+  x.save!
+end
