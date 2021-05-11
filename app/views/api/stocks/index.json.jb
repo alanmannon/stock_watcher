@@ -1,0 +1,15 @@
+@stocks.each do |stock|
+  {
+    symbol: stock.symbol,
+    name: stock.name,
+    last_sale: stock.last_sale,
+    net_change: stock.net_change,
+    percent_change: stock.percent_change,
+    market_cap: stock.market_cap,
+    country: stock.country,
+    ipo_year: stock.ipo_year,
+    volume: stock.volume,
+    sector: stock.sector,
+    industry: stock.industry,
+  }
+end
